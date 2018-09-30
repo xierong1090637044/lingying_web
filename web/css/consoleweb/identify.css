@@ -1,0 +1,62 @@
+.MobContain
+{
+    margin: 10px 15px 0;
+    text-align: center;
+}
+.list
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #fff;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px;
+}
+.avatardiv
+{
+
+}
+.avatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.username{
+    height: 80px;
+    line-height: 40px;
+    width: 100%;
+    text-align: left;
+    padding-left: 15px;
+}
+.state{
+    color: #d93915;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.titletext
+{
+    margin: 3% 0;
+    text-align: left;
+    font-size: 16px;
+}
+.img1
+{
+    width: 100%;
+}
+.line
+{
+    border:1px solid#999;
+    border-style: dashed;
+    margin: 9% 0 6%;
+}
+.button
+{
+    margin: 0 6% 0;
+}
+.time
+{
+    font-size: 12px;
+}

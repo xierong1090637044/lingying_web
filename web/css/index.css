@@ -1,0 +1,76 @@
+body {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: #fafafa;
+}
+.MobMain
+{
+    overflow: hidden;
+    background: #469e8c;
+}
+.main
+{
+    width: 100%;
+    background: #fff;
+    padding: 0px 0 10px;
+}
+.avatar
+{
+    border-radius: 50%;
+    width: 16%;
+    margin: 5% 0 3%;
+}
+.nickname
+{
+    color: #4d4d4d;
+    font-size: 13px;
+    width: 80%;
+    margin-left: 10%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.alllist
+{
+    padding: 0px 15px;
+    margin: 20px 0 0 0;
+}
+.list
+{
+    border-bottom: 1px solid#efefef;
+    padding-bottom: 8px;
+    margin: 0px 0 10px 0;
+}
+.overplay
+{
+    width: 100%;
+    text-align: center;
+}
+.iconstyle
+{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0bc4a3;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+}
+.listtext
+{
+    color:#4d4d4d;
+    margin-right:10px;
+    display: inline-block;
+}
+.iconstyle1
+{
+    width: 25px;
+    height: 25px;
+    color: #999;
+    text-align: center;
+    line-height: 25px;
+    display: inline-block;
+    float: right;
+}

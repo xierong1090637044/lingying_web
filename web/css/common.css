@@ -1,0 +1,9 @@
+/*--通用的css样式 */
+.loading
+{
+    width: 100px;
+    height: 200px;
+    text-align: center;;
+    margin: 0 auto;
+    display: none;
+}
