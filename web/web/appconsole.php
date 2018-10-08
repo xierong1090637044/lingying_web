@@ -1,5 +1,5 @@
 <?php
-    require_once '../res/GetUser.php';
+    require_once '../res/class/GetUser.php';
 
     $id = $_GET["id"];
     $user = new GetUser($id);
