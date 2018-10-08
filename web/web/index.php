@@ -5,7 +5,7 @@ include_once '../phpcj/mask.php';
 include_once '../phpcj/qrcodeshow.php';
 include_once '../phpcj/button.php';
 include_once '../phpcj/indexcaidan.php';
-include_once '../lib/BmobUser.class.php';
+include_once '../lib/Bmob/BmobUser.class.php';
 
 $weixin = new class_weixin();
 $bmobUser = new BmobUser();

@@ -1,5 +1,5 @@
 <?php
-  include_once '../../lib/BmobObject.class.php';
+  include_once '../../lib/Bmob/BmobObject.class.php';
 
   $id = $_POST["id"];
   $type = $_POST["type"];

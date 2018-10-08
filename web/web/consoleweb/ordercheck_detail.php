@@ -1,9 +1,9 @@
 <?php
-  include_once '../../lib/BmobObject.class.php';
+  include_once '../../lib/Bmob/BmobObject.class.php';
 
   $object = new BmobObject("order");
   $res=$object->get($_GET["id"],array('include=student,user,teacher'));
-  
+
   if($res->student->objectId ==null)
   {
     $teacher = new BmobObject("teacher");

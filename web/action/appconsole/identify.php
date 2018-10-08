@@ -1,6 +1,6 @@
 <?php
-  include_once '../../lib/BmobObject.class.php';
-  include_once '../../lib/BmobUser.class.php';
+  include_once '../../lib/Bmob/BmobObject.class.php';
+  include_once '../../lib/Bmob/BmobUser.class.php';
 
   $masterKey = "b08344302e157680c76af7cde677957f";
 

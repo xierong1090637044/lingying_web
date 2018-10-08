@@ -1,8 +1,8 @@
 <?php
     header("Content-Type:text/html;   charset=utf-8");//防止乱码
     include_once '../weixin.class.php';
-    include_once '../lib/BmobUser.class.php';
-    include_once '../lib/BmobObject.class.php';
+    include_once '../lib/Bmob/BmobUser.class.php';
+    include_once '../lib/Bmob/BmobObject.class.php';
 
     $bmobObj = new BmobObject("_User");
     $username = "啦啦啦、岁月无恙";//模拟微信登录暂时要设置用户名

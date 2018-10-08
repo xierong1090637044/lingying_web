@@ -1,5 +1,5 @@
 <?php
-  include_once '../../lib/BmobObject.class.php';
+  include_once '../../lib/Bmob/BmobObject.class.php';
 
   $object = new BmobObject("parent_identify");
   $res=$object->get($_GET["id"],array('include=parent'));

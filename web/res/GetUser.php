@@ -1,6 +1,6 @@
 <?php
-require_once '../lib/BmobUser.class.php';
-require_once '../lib/BmobObject.class.php';
+require_once '../lib/Bmob/BmobUser.class.php';
+require_once '../lib/Bmob/BmobObject.class.php';
 
 class GetUser {
 

@@ -83,7 +83,7 @@
              <div>
                  <input class="input" maxlength="6" placeholder="验证码" id="code"/>
              </div>
-             <div style="width:40%"><button class="getcode" id = "getcode">发送验证码</button></div>
+             <div style="width:35%"><button class="getcode" id = "getcode">发送验证码</button></div>
          </div>
          <div class="login" id ="login">登录</div>
 

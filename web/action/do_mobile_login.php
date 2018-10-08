@@ -1,5 +1,5 @@
 <?php
-  include_once '../lib/BmobSms.class.php';
+  include_once '../lib/Bmob/BmobSms.class.php';
 
   $bmobSms = new BmobSms();
   $type = $_POST["type"];
