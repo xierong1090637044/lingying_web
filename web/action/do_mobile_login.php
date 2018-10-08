@@ -22,14 +22,19 @@
   elseif ($type == 1) {
       $phonenumber = $_POST["phonenumber"];
       $code = $_POST["code"];
-      $res = $bmobSms->verifySmsCode($phonenumber,$code);
-      if($res->msg =="ok")
-      {
-          $res = json_encode("success");
-          echo $res;
-      }else {
+      try {
+          $res = $bmobSms->verifySmsCode($phonenumber,$code);
+          if($res->msg =="ok")
+          {
+              $res = json_encode("success");
+              echo $res;
+          }else {
+              $res = json_encode("fail");
+              echo $res;
+          }
+      } catch (\Exception $e) {
           $res = json_encode("fail");
-          echo "fail";
+          echo $res;
       }
   }
 
