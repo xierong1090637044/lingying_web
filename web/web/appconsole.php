@@ -1,7 +1,8 @@
 <?php
     require_once '../res/GetUser.php';
 
-    $user = new GetUser;
+    $id = $_GET["id"];
+    $user = new GetUser($id);
     $nickname = $user->nickname();
     $avatar = $user->avatar();
     if(!$user->appconsole()) header('location:../web/depweb/404.php');

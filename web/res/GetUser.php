@@ -1,16 +1,16 @@
 <?php
-include_once '../lib/BmobUser.class.php';
-include_once '../lib/BmobObject.class.php';
-include_once 'login.php';
+require_once '../lib/BmobUser.class.php';
+require_once '../lib/BmobObject.class.php';
 
 class GetUser {
 
-  public function __construct()
+  public function __construct($id)
   {
-      $this->objectId = $_COOKIE["objectId"];
+      $this->id = $id;
 
       $bmobObj = new BmobObject("_User");
-      $this->res=$bmobObj->get($this->objectId);
+      $result=$bmobObj->get("",array('where={"mobilePhoneNumber":'."\"".$this->id."\"".'}'));
+      $this->res=$result->results[0];
   }
 
   public function nickname() {
@@ -18,12 +18,14 @@ class GetUser {
   }
 
   public function avatar() {
-      return $this->res->avatar;
+     return $this->res->avatar;
   }
 
   public function appconsole() {
-      return $this->res->appconsole;
+     return $this->res->appconsole;
   }
+
+  private $id;
 
 }
 ?>

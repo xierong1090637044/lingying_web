@@ -5,7 +5,7 @@
     include_once '../lib/BmobObject.class.php';
 
     $bmobObj = new BmobObject("_User");
-    $username = "";
+    $username = "啦啦啦、岁月无恙";//模拟微信登录暂时要设置用户名
 
     if($username !="")
     {
