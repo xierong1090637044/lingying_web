@@ -1,11 +1,15 @@
 <?php
     require_once '../res/class/GetUser.php';
+    require_once '../res/action/require_mobile.php';
 
     $id = $_GET["id"];
     $user = new GetUser($id);
     $nickname = $user->nickname();
     $avatar = $user->avatar();
     if(!$user->appconsole()) header('location:../web/depweb/404.php');
+
+    $ismoile = new ISMOBILE();
+    $ismoile->do_iswechat();
 ?>
 
 <html lang="zh-cn">

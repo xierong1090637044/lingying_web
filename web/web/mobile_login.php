@@ -1,3 +1,9 @@
+<?php
+     require_once '../res/action/require_mobile.php';
+
+	 $ismoile = new ISMOBILE();
+	 $ismoile->do_iswechat();
+?>
 <html lang="zh-cn">
 	<head>
 		<meta charset="UTF-8">

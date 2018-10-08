@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-		<title>没有权限</title>
+		<title>请使用手机游览器打开</title>
         <link rel="stylesheet"  href="../../css/bootstrap1.min.css">
 		<link rel="stylesheet"  href="../../css/iconfont1.css">
         <script src="../../js/iconfont.js"></script>
@@ -21,18 +21,19 @@
      .image
      {
          width: 85%;
+         margin-top: 25%;
      }
      .noticetext
      {
          font-size: 15px;
          color: #202a36;
-         margin: 20px 0 0;
+         margin: 60px 0 0;
      }
     </style>
 	<body>
         <div class="MobileContent">
-            <img src="../../images/404.png" class="image"/>
-            <div class="noticetext">对不起，您没有权限</div>
+            <img src="../../images/error.png" class="image"/>
+            <div class="noticetext">对不起，请用手机游览器打开</div>
         </div>
 	</body>
 </html>
