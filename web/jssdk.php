@@ -31,7 +31,7 @@ class JSSDK {
       "signature" => $signature,
       "rawString" => $string
     );
-    return $signPackage; 
+    return $signPackage;
   }
 
   private function createNonceStr($length = 16) {
@@ -45,8 +45,8 @@ class JSSDK {
 
   private function getJsApiTicket() {
     // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode($this->get_php_file("jsapi_ticket.php"));
-    if ($data->expire_time < time()) {
+    $data = $_COOKIE["jsapi_ticket"];
+    if ($data == null) {
       $accessToken = $this->getAccessToken();
       // 如果是企业号用以下 URL 获取 ticket
       // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
@@ -54,12 +54,10 @@ class JSSDK {
       $res = json_decode($this->httpGet($url));
       $ticket = $res->ticket;
       if ($ticket) {
-        $data->expire_time = time() + 7000;
-        $data->jsapi_ticket = $ticket;
-        $this->set_php_file("jsapi_ticket.php", json_encode($data));
+        setcookie("jsapi_ticket", $ticket,time() + 7000);
       }
     } else {
-      $ticket = $data->jsapi_ticket;
+      $ticket = $data;
     }
 
     return $ticket;
@@ -67,20 +65,18 @@ class JSSDK {
 
   private function getAccessToken() {
     // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode($this->get_php_file("access_token.php"));
-    if ($data->expire_time < time()) {
+    $data = $_COOKIE["access_token"];
+    if ($data ==null) {
       // 如果是企业号用以下URL获取access_token
       // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
       $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
       $res = json_decode($this->httpGet($url));
       $access_token = $res->access_token;
       if ($access_token) {
-        $data->expire_time = time() + 7000;
-        $data->access_token = $access_token;
-        $this->set_php_file("access_token.php", json_encode($data));
+        setcookie("access_token", $access_token,time() + 7000);
       }
     } else {
-      $access_token = $data->access_token;
+      $access_token = $data;
     }
     return $access_token;
   }
@@ -110,4 +106,3 @@ class JSSDK {
     fclose($fp);
   }
 }
-

@@ -91,6 +91,18 @@ if($username ==null || $password ==null)
 	      {
 	          var height = $(window).height();
 	          $(document.body).css('height',height);
+
+              $(function(){
+        var $loadingToast = $('#loadingToast');
+        $('#showLoadingToast').on('click', function(){
+            if ($loadingToast.css('display') != 'none') return;
+
+            $loadingToast.fadeIn(100);
+            setTimeout(function () {
+                $loadingToast.fadeOut(100);
+            }, 2000);
+        });
+    });
           })
 
 

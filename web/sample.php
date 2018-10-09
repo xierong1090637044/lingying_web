@@ -1,6 +1,6 @@
 <?php
 require_once "jssdk.php";
-$jssdk = new JSSDK("yourAppID", "yourAppSecret");
+$jssdk = new JSSDK("wx938b0fcd9237d92a", "d1ae3338d17116ccc6cc7bc85a849700");
 $signPackage = $jssdk->GetSignPackage();
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ $signPackage = $jssdk->GetSignPackage();
   <title></title>
 </head>
 <body>
-  
+
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -32,11 +32,20 @@ $signPackage = $jssdk->GetSignPackage();
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',
     signature: '<?php echo $signPackage["signature"];?>',
     jsApiList: [
-      // 所有要调用的 API 都要加到这个列表中
-    ]
+        'openLocation',
+        'getLocation',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage']
   });
   wx.ready(function () {
-    // 在这里调用 API
+      wx.openLocation({
+  latitude: 0, // 纬度，浮点数，范围为90 ~ -90
+  longitude: 0, // 经度，浮点数，范围为180 ~ -180。
+  name: '', // 位置名
+  address: '', // 地址详情说明
+  scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+  infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+  });
   });
 </script>
 </html>

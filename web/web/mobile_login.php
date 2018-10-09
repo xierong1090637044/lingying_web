@@ -1,8 +1,13 @@
 <?php
      require_once '../res/action/require_mobile.php';
+     require_once "../res/comp/footer.php";
 
 	 $ismoile = new ISMOBILE();
 	 $ismoile->do_iswechat();
+
+     if($_COOKIE["phonenumber"] != null){
+         header('location:appconsole.php?id='.$_COOKIE["phonenumber"]);
+     }
 ?>
 <html lang="zh-cn">
 	<head>
@@ -95,12 +100,13 @@
 
          <div id="toast" class="toast"></div>
      </div>
+     <?php  $loading = new footer();$loading->footer()?>
 
      <script type="text/javascript">
        $(document).ready(function()
        {
-		   var getphone = $.cookie('phonenumber');
-		   if(getphone != null ) window.location.href = "appconsole.php?id="+getphone;
+		   //var getphone = $.cookie('phonenumber');
+		   //if(getphone != null ) window.location.href = "appconsole.php?id="+getphone;
            //验证码点击
            $("#getcode").click(function(){
               var phonenumber = $("#mobilenumber").val();
