@@ -5,9 +5,11 @@
 	 $ismoile = new ISMOBILE();
 	 $ismoile->do_iswechat();
 
-     if($_COOKIE["phonenumber"] != null){
-         header('location:appconsole.php?id='.$_COOKIE["phonenumber"]);
-     }
+
+    if(isset($_COOKIE["phonenumber"])){
+        header('location:appconsole.php?id='.$_COOKIE["phonenumber"]);
+    }
+
 ?>
 <html lang="zh-cn">
 	<head>
@@ -81,6 +83,10 @@
           margin: 0 auto;
           text-align: center;
       }
+      .footer
+      {
+          margin-top: 35%;
+      }
 
     </style>
 	<body ontouchstart="">
@@ -100,7 +106,7 @@
 
          <div id="toast" class="toast"></div>
      </div>
-     <?php  $loading = new footer();$loading->footer()?>
+     <?php  $loading = new footer('footer');$loading->footer()?>
 
      <script type="text/javascript">
        $(document).ready(function()
