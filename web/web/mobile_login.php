@@ -26,11 +26,11 @@
        input:focus
       {
             outline: none;
-            border-color: #5d5d5d;
+            border-color: #d2d2d2;
       }
       .input
       {
-          border:1px solid#5d5d5d;
+          border:1px solid#d2d2d2;
           height: 40px;
           line-height: 40px;
           padding-left: 5px;
@@ -58,6 +58,13 @@
           color: #fff;
           text-align: center;
           border-radius: 4px;
+          border-style: unset;
+          border-color: unset;
+          border-image: unset;
+      }
+      button:focus
+      {
+          outline: 0;
       }
       .login
       {
