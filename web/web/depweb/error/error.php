@@ -3,9 +3,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 		<title>请使用手机游览器打开</title>
-        <link rel="stylesheet"  href="../../css/bootstrap1.min.css">
-		<link rel="stylesheet"  href="../../css/iconfont1.css">
-        <script src="../../js/iconfont.js"></script>
+        <link rel="stylesheet"  href="../../../css/bootstrap1.min.css">
+		<link rel="stylesheet"  href="../../../css/iconfont1.css">
+        <script src="../../../js/iconfont.js"></script>
 	</head>
     <style>
      body
@@ -32,7 +32,7 @@
     </style>
 	<body>
         <div class="MobileContent">
-            <img src="../../images/error.png" class="image"/>
+            <img src="../../../images/error.png" class="image"/>
             <div class="noticetext">对不起，请用手机游览器打开</div>
         </div>
 	</body>
