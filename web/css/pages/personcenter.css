@@ -1,0 +1,85 @@
+.Mobcontent {
+        padding: 15px 30px;
+    }
+
+    .avatar {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .avatarandname {
+        display: inline-block;
+        /*line-height: 4rem;*/
+        align-items: center;
+        text-align: center;
+        list-style: none;
+    }
+
+    .nickname {
+        margin: 0 0 0 10px;
+    }
+
+    .lineheight {
+        line-height: 2rem;
+    }
+
+    .lineheight1 {
+        line-height: 2rem;
+        color: #fff;
+        padding: 0px 20px;
+        background: #202a36;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .liststyle {
+        width: 100%;
+        padding: 10px 0;
+        float: left;
+    }
+
+    .iconfont {
+        font-size: 35px;
+        color: #fff;
+    }
+
+    .iconfont1 {
+        font-size: 35px !important;
+    }
+
+    .listitem {
+        width: calc(25% - 10px);
+        padding: 5px;
+        border-radius: 4px;
+        text-align: center;
+        display: inline-block;
+        float: left;
+        margin: 5px;
+        color: #000;
+    }
+
+    .iconstyle {
+        background: #6ecad5;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        text-align: center;
+        line-height: 60px;
+        margin: 0 auto;
+    }
+
+    .listtext {
+        width: 100%;
+        font-size: 13px;
+        margin: 2px 0 0 0;
+    }
+
+    .weui_cell_ft:after{
+        height: 10px!important;
+        width: 10px!important;
+    }
+
+    p{
+        margin: 10px 0px;
+    }

@@ -3,7 +3,7 @@
 
   $object = new BmobObject("identify");
   $res=$object->get("",array('include=parent','where={"isactive":"true"}'))->results;
-  if(count($res) == 0) header('location:../../web/depweb/nocontent.php');
+  if(count($res) == 0) header('location:../../web/depweb/error/nocontent.php');
   $res = json_encode($res);
 ?>
 

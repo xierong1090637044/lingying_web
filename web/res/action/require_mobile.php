@@ -48,14 +48,14 @@
       public function do_ismobile()
       {
           if($this->isMobile() != true){
-              header('location:../web/depweb/error.php');
+              header('location:../web/depweb/error/error.php');
           }
       }
 
       public function do_iswechat()
       {
           if($this->isWeixin() != true){
-              header('location:../web/depweb/error.php');
+              header('location:../web/depweb/error/error.php');
           }
       }
   }

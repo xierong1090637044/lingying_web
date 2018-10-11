@@ -1,0 +1,71 @@
+input:focus
+{
+     outline: none;
+     border-color: #d2d2d2;
+}
+.input
+{
+   border:1px solid#d2d2d2;
+   height: 40px;
+   line-height: 40px;
+   padding-left: 5px;
+   border-radius: 4px;
+   width: 100%;
+}
+.Mobcontent
+{
+   padding: 15px;
+}
+.input_mob
+{
+   margin-bottom: 20px;
+}
+.input_code
+{
+   display: flex;
+   justify-content: space-between;
+}
+.getcode
+{
+   width: 100%;
+   height: 40px;
+   background: #2ca879;
+   color: #fff;
+   text-align: center;
+   border-radius: 4px;
+   border-style: unset;
+   border-color: unset;
+   border-image: unset;
+}
+button:focus
+{
+   outline: 0;
+}
+.login
+{
+   width: 60%;
+   height: 40px;
+   line-height: 40px;
+   background: #2ca879;
+   color: #fff;
+   text-align: center;
+   border-radius: 4px;
+   margin:  0 auto;
+   margin-top: 30px;
+}
+.toast
+{
+   position: fixed;
+   bottom: 10%;
+   left: 0%;
+   right: 0%;
+   color: #000;
+   height: 40px;
+   line-height: 40px;
+   margin: 0 auto;
+   text-align: center;
+}
+.footer
+{
+   margin-top: 35%;
+}

@@ -4,7 +4,7 @@
   $object = new BmobObject("order");
   $res=$object->get("",array('include=user','where={"ischeck":"false"}'))->results;
   //var_dump($res);
-  if(count($res) == 0) header('location:../../web/depweb/nocontent.php');
+  if(count($res) == 0) header('location:../../web/depweb/error/nocontent.php');
   $res = json_encode($res);
 ?>
 

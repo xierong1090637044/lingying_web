@@ -3,8 +3,7 @@
      require_once "../res/comp/footer.php";
 
 	 $ismoile = new ISMOBILE();
-	 $ismoile->do_iswechat();
-
+	 $ismoile->do_iswechat();//需要微信游览器打开
 
     if(isset($_COOKIE["phonenumber"])){
         header('location:appconsole.php?id='.$_COOKIE["phonenumber"]);

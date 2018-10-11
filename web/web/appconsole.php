@@ -6,7 +6,7 @@
     $user = new GetUser($id);
     $nickname = $user->nickname();
     $avatar = $user->avatar();
-    if(!$user->appconsole()) header('location:../web/depweb/404.php');
+    if(!$user->appconsole()) header('location:../web/depweb/error/404.php');
 
     $ismoile = new ISMOBILE();
     $ismoile->do_iswechat();
