@@ -1,85 +1,49 @@
 .Mobcontent {
-        padding: 15px 30px;
+        padding: 15px;
     }
-
+    .headeritme
+    {
+        text-align: center;
+        background: linear-gradient(to right, #2ca879 , #1ec862);
+        border-radius: 8px;
+        display: flex;
+        padding: 25px 10px;
+        position: relative;
+    }
     .avatar {
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
+        border:1px solid#fff;
     }
-
-    .avatarandname {
-        display: inline-block;
-        /*line-height: 4rem;*/
-        align-items: center;
-        text-align: center;
-        list-style: none;
-    }
-
-    .nickname {
-        margin: 0 0 0 10px;
-    }
-
-    .lineheight {
-        line-height: 2rem;
-    }
-
-    .lineheight1 {
-        line-height: 2rem;
-        color: #fff;
-        padding: 0px 20px;
-        background: #202a36;
-        border-radius: 20px;
-        text-align: center;
-    }
-
-    .liststyle {
-        width: 100%;
-        padding: 10px 0;
-        float: left;
-    }
-
-    .iconfont {
-        font-size: 35px;
-        color: #fff;
-    }
-
-    .iconfont1 {
-        font-size: 35px !important;
-    }
-
-    .listitem {
-        width: calc(25% - 10px);
-        padding: 5px;
-        border-radius: 4px;
-        text-align: center;
-        display: inline-block;
-        float: left;
-        margin: 5px;
+    .bindmobileicon
+    {
+        height: 20px;
+        width: 20px;
+        background: #fff;
         color: #000;
-    }
-
-    .iconstyle {
-        background: #6ecad5;
+        font-size: 15px;
         border-radius: 50%;
-        height: 60px;
-        width: 60px;
+        line-height: 20px;
         text-align: center;
-        line-height: 60px;
+    }
+    .mycode
+    {
+        height: 35px;
+        width: 35px;
+        background: #fff;
+        color: #000;
+        border-radius: 50%;
+        line-height: 37px;
+        text-align: center;
+        position: absolute;
+        bottom: -17.5px;
+        left: 0;
+        right: 0;
         margin: 0 auto;
+        box-shadow: 0px 0px 10px #666;
     }
-
-    .listtext {
-        width: 100%;
-        font-size: 13px;
-        margin: 2px 0 0 0;
-    }
-
-    .weui_cell_ft:after{
-        height: 10px!important;
-        width: 10px!important;
-    }
-
-    p{
-        margin: 10px 0px;
+    .qrcode
+    {
+        width: 200px;
     }

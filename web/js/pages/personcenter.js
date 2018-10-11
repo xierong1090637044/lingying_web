@@ -1,5 +1,21 @@
 $(document).ready(function()
 {
+    $("#mycode").click(function(){
+        $("#dialog").toggle();
+    });
+
+    $(".weui_mask").click(function(){
+        $("#dialog").toggle();
+    });
+
+    $("#callce").click(function(){
+        $("#dialog").toggle();
+    });
+
+    $("#confrim").click(function(){
+        $("#dialog").toggle();
+    });
+
     wx.config({
         debug: false,
         appId: '<?php echo $signPackage["appId"];?>',
