@@ -12,6 +12,10 @@
      $user = new GetUser($id);
      if($user->res==null) header('location:../web/depweb/error/nouser.php');
 
+     $getcookie = $_COOKIE["phonenumber"];
+     if($id != $getcookie) header('location:../web/index.php');
+     if(!isset($getcookie)) header('location:../web/index.php');//防止直接绕过登录流程
+
      $nickname = $user->nickname();
      $avatar = $user->avatar();
 

@@ -3,9 +3,9 @@
   class ISMOBILE
   {
 
-      public function __construct()
+      public function __construct($index=1)
       {
-          // code...
+          $this->index = $index;
       }
 
       public function isMobile() {
@@ -48,16 +48,34 @@
       public function do_ismobile()
       {
           if($this->isMobile() != true){
-              header('location:../web/depweb/error/error.php');
+              switch ($this->index) {
+                  case 1:
+                      header('location:../web/depweb/error/error.php');
+                      break;
+
+                  case 2:
+                      header('location:../../web/depweb/error/error.php');
+                      break;
+              }
           }
       }
 
       public function do_iswechat()
       {
           if($this->isWeixin() != true){
-              header('location:../web/depweb/error/error.php');
+              switch ($this->index) {
+                  case 1:
+                      header('location:../web/depweb/error/error.php');
+                      break;
+
+                  case 2:
+                      header('location:../../web/depweb/error/error.php');
+                      break;
+              }
           }
       }
+
+      private $index;
   }
 
 ?>
