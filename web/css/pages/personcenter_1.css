@@ -1,5 +1,6 @@
-.Mobcontent {
-        padding: 15px;
+    .Mobcontent
+    {
+
     }
     .headeritme
     {
@@ -9,6 +10,7 @@
         display: flex;
         padding: 25px 10px;
         position: relative;
+        margin: 15px;
     }
     .avatar {
         width: 4rem;
@@ -26,6 +28,7 @@
         border-radius: 50%;
         line-height: 20px;
         text-align: center;
+        display: inline-block;
     }
     .mycode
     {
@@ -34,7 +37,7 @@
         background: #fff;
         color: #000;
         border-radius: 50%;
-        line-height: 37px;
+        line-height: 35px;
         text-align: center;
         position: absolute;
         bottom: -17.5px;
@@ -46,4 +49,29 @@
     .qrcode
     {
         width: 200px;
+    }
+    .every-item
+    {
+        display:flex;
+        justify-content: space-between;
+        line-height: 41px;
+        padding: 0px 5px;
+        margin-bottom: 8px;
+        background: #fff;
+        height: 39px;
+    }
+    .border-choice
+    {
+        margin-top: 40px;
+    }
+    .item-border
+    {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #2ca879;
+        color: #fff;
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
     }
