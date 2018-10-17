@@ -127,6 +127,10 @@
                 <div class="iconstyle"><i class="iconfont icon-personal-center"></i> </div>
                 <div class="listtext">申请审核</div>
             </a>
+            <a class="listitem" href="../web/consoleweb/suggestions.php">
+                <div class="iconstyle"><i class="iconfont icon-personal-center"></i> </div>
+                <div class="listtext">建议反馈</div>
+            </a>
         </div>
      </div>
 	</body>
