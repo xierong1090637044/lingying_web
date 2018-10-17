@@ -32,12 +32,28 @@
 		  	 var item = list[i];
 			 console.log(item);
 			 var html = "";
-			 html +="<div style='margin-bottom: 20px;background: #fff;width: 100%;border-radius: 4px;padding: 10px;' id='list' data-id="+item.objectId+">";
+			 html +="<div style='margin-bottom: 20px;background: #fff;width: 100%;border-radius: 4px;padding: 10px;'>";
 			 html +="<div style='border-bottom:1px solid#999;text-align:left;padding:0 0 5px'>"+item.content+"</div>";
-             html +="<div style='text-align:right;font-size: 12px;'>"+item.createdAt+"</div>";
+             html +="<div style='display:flex;justify-content: space-between;font-size: 12px;'><div id='delete' style='color:#f30' data-id="+item.objectId+">删除</div><div>"+item.createdAt+"</div></div>";
 			 html +="</div>";
 			 $("#MobCcontent").append(html);
 		  }
+
+          $("#MobCcontent").on("click", "#delete", function () {
+              var id = $(this).attr("data-id");
+              $.ajax({
+                  type: "POST",
+                  url: "../../action/base_bmob.php",
+                  data: {id:id,type:"delete",object:"suggestions"},
+                  success: function(data){
+                      console.log(data);
+                       window.location.reload();
+                  },
+                  error : function(data) {
+                      console.log((data));
+                  },
+              });
+           });
 
 		</script>
 	</body>
