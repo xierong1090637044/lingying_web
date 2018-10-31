@@ -6,7 +6,7 @@
   $bmobUser = new BmobUser();
   $res=$bmobObj->get($_GET["id"],array('include=parent','where={"isactive":"true"}'));
   $result = json_encode($res);
-
+  $comment_list = [];
 
   //用户登录
   $username = $_COOKIE["username"];
@@ -16,9 +16,9 @@
   //查询评论
   $id = $_GET["id"];
   $comment = new BmobObject("Comment");
-  $getcommet=$comment->get("",array('where={"post":{"__type":"Pointer","className":"find_work","objectId":'."\"".$id."\"".'}}','include=author','order=-createdAt'))->results;
-
+  $getcommet=$comment->get("",array('where={"post":{"__type":"Pointer","className":"find_work","objectId":'."\"".$id."\"".'}}','include=author'))->results;
   $getcommet_result = json_encode($getcommet);
+
 ?>
 <html lang="zh-cn">
 	<head>
@@ -65,22 +65,43 @@
 
         <div class="mask"><img id="bigimage" class="bigimage"/></div>
         <script>
+             var comment_type = "comment";
+             var id = "<?php echo $info->objectId;  ?>";
+             var objectid = "<?php echo $_GET["id"]; ?>";
+             var commentid;
+             var itemid;
+
              var result = <?php echo $result; ?>;
              var getcommet_result = <?php echo $getcommet_result; ?>;
-             console.log(getcommet_result);
 
-             for (var i = 0; i < getcommet_result.length; i++) {
-                 var item = getcommet_result[i];
-                 console.log(item);
-                 var html = "";
-                 html +="<div class='list' id='list' data-id="+item.objectId+">";
-                 html +="<div class='headeritem'><div class='avatar'><image src="+item.author.avatar+" class='avatar' /></div>";
-                 html +="<div class='username_comment'><div style='color: #0006ff'>"+item.author.username+"</div><div class='creattime'>"+item.createdAt +"</div></div></div>";
-                 html +="<div class='titlestyle1'>"+item.comment+"</div>";
-                 (i == 0) ?html +="<div class='comment_notice'>沙发</div>":html +="<div class='comment_notice'>板凳</div>";
-                 html +="</div>";
-                 $("#commentview").append(html);
-             }
+             $.ajax({
+                 type: "POST",
+                 url: "../../action/appconsole/comment.php",
+                 data: {type:"get_all_comment",objectid:objectid},
+                 success: function(data){
+                     console.log(data);
+                     for (var i = 0; i < data.length; i++) {
+                         var item = data[i];
+                         console.log(item);
+                         itemid = item.objectId;
+                         var html = "";
+                         html +="<div class='list' id='comment_list' data-id="+item.objectId+">";
+                         html +="<div class='headeritem'><div class='avatar'><image src="+item.author.avatar+" class='avatar' /></div>";
+                         html +="<div class='username_comment'><div style='color: #0006ff'>"+item.author.username+"</div><div class='creattime'>"+item.createdAt +"</div></div></div>";
+                         html +="<div class='titlestyle1'>"+item.comment+"</div>";
+                         for (var j = 0; j < item.commentlist.length; j++) {
+                            var itemlist = item.commentlist[j];
+                            html +="<div class='titlestyle2'><span style='color:#0006ff'>"+itemlist.author.username+"：</span><span>"+itemlist.comment+"</span></div>";
+                         }
+                         (i == 0) ?html +="<div class='comment_notice'>沙发</div>":html +="<div class='comment_notice'>板凳</div>";
+                         html +='<div style="text-align:right;margin:10px 0 0;display:none" id="comment_div"><button type="button" class="btn btn-info" id="comment_user">回复</button></div>';
+                         html +="</div>";
+                         $("#commentview").append(html);
+                 }},
+                 error : function(data) {
+                     console.log((data));
+                 },
+             });
 
             var html = "";
             if(result.image1 !=null) html += "<div class='imagesize'><img src="+result.image1.url+" class='listimage'></div>";
@@ -104,27 +125,42 @@
             });
 
             $("#comment").click(function(){
+                console.log(comment_type);
                 var comment = $(".inputstyle").val().trim();
                 console.log(comment);
-                var id = "<?php echo $info->objectId;  ?>";
-                var objectid = "<?php echo $_GET["id"]; ?>";
                 if(comment == null || comment =="")
                 {}else {
                     $.ajax({
                         type: "POST",
                         url: "../../action/appconsole/comment.php",
-                        data: {id:id,objectid:objectid,comment:comment},
+                        data: {type:comment_type,id:id,objectid:objectid,comment:comment,commentid:commentid},
                         success: function(data){
-                             if(data)
+                            if(data)
                              {
                                  window.location.reload();
                              }
+                             console.log(data);
                         },
                         error : function(data) {
                             console.log((data));
                         },
                     });
                 }
+            });
+
+            //回复别人
+
+            $("#commentview").on("click","#comment_list",function(){
+                console.log("sss");
+                commentid = $(this).attr("data-id");
+                $(this).siblings().find("#comment_div").css("display","none");
+                $(this).find("#comment_div").toggle();
+                $(this).find("#comment_user").click(function(){
+                    $(this).find("#comment_div").css("display","none");
+                    $(".inputstyle").focus();
+                    comment_type = "comment_user";
+                    commentid = commentid;
+                });
             });
 
         </script>
