@@ -25,7 +25,6 @@
         <div id="loading" class="loading"></div>
         <div class="MobContain" id ="MobCcontent"></div>
 
-
 		<script type="text/javascript">
 		  var list = <?php echo $res; ?>;
 		  for (var i = 0; i < list.length; i++)

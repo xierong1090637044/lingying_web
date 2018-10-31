@@ -128,8 +128,12 @@
                 <div class="listtext">申请审核</div>
             </a>
             <a class="listitem" href="../web/consoleweb/suggestions.php">
-                <div class="iconstyle"><i class="iconfont icon-personal-center"></i> </div>
-                <div class="listtext">建议反馈</div>
+                <div class="iconstyle"><i class="iconfont icon-miaoshu"></i> </div>
+                <div class="listtext">查看反馈</div>
+            </a>
+            <a class="listitem" href="../web/consoleweb/student_detail_check.php">
+                <div class="iconstyle"><i class="iconfont icon-jubao"></i> </div>
+                <div class="listtext">投诉处理</div>
             </a>
         </div>
      </div>

@@ -1,9 +1,7 @@
 <?php
 
-define('APPID',         	"wx938b0fcd9237d92a");
-define('APPSECRET',        	"d1ae3338d17116ccc6cc7bc85a849700");
-//define('APPID',         	"wx938b0fcd9237d92a");
-//define('APPSECRET',        	"12e683a52e395c1a51d3a52c89b41e82");
+define('APPID',         	"wxcae7e19d9799a9d3");
+define('APPSECRET',        	"c21ef670cac185db08210ae3b69d7c6f");
 
 class class_weixin
 {

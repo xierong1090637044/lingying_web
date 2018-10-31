@@ -1,7 +1,7 @@
 <?php
   include_once '../../lib/Bmob/BmobObject.class.php';
 
-  $object = new BmobObject("suggestions");
+  $object = new BmobObject("jubao");
   $res=$object->get()->results;
   if(count($res) == 0) header('location:../../web/depweb/error/nocontent.php');
   $res = json_encode($res);
@@ -33,8 +33,10 @@
 			 console.log(item);
 			 var html = "";
 			 html +="<div style='margin-bottom: 20px;background: #fff;width: 100%;border-radius: 4px;padding: 10px;'>";
-			 html +="<div style='border-bottom:1px solid#999;text-align:left;padding:0 0 5px'>"+item.content+"</div>";
-             html +="<div style='display:flex;justify-content: space-between;font-size: 12px;'><div id='delete' style='color:#f30' data-id="+item.objectId+">删除</div><div>"+item.createdAt+"</div></div>";
+			 html +="<div style='border-bottom:1px solid#999;text-align:left;padding:0 0 5px'>"+item.text+'  '+item.anotnertext+"</div>";
+             html +="<div style='display:flex;justify-content: space-between;font-size: 12px;margin-top:5px'><div id='delete' style='color:#f30' data-id="+item.objectId+
+             ">删除</div><div id='getdetail' style='color:#2ca879' data-id="+item.parent.objectId+
+             ">查看学生详情</div><div>"+item.createdAt+"</div></div>";
 			 html +="</div>";
 			 $("#MobCcontent").append(html);
 		  }
@@ -44,16 +46,21 @@
               $.ajax({
                   type: "POST",
                   url: "../../action/base_bmob.php",
-                  data: {id:id,type:"delete",object:"suggestions"},
+                  data: {id:id,type:"delete",object:"jubao"},
                   success: function(data){
                       console.log(data);
-                       window.location.reload();
+                      window.location.reload();
                   },
                   error : function(data) {
                       console.log((data));
                   },
               });
            });
+
+           $("#MobCcontent").on("click", "#getdetail", function () {
+               var id = $(this).attr("data-id");
+               window.location.href= "student_detail.php?id="+id;
+            });
 
 		</script>
 	</body>
