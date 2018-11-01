@@ -1,7 +1,4 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'ycwfw_web/web/weixin.class.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'ycwfw_web/web/lib/Bmob/BmobUser.class.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'ycwfw_web/web/lib/Bmob/BmobObject.class.php';
 
 /*** */
 class Dologin

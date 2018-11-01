@@ -1,4 +1,5 @@
 <?php
+include_once '../weixin.class.php';
 include_once '../lib/Bmob/BmobObject.class.php';
 include_once '../lib/Bmob/BmobUser.class.php';
 include_once '../res/action/do_login.php';

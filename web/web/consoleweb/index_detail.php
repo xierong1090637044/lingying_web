@@ -1,7 +1,7 @@
 <?php
   include_once '../../lib/Bmob/BmobObject.class.php';
   include_once '../../lib/Bmob/BmobUser.class.php';
-  require '../../res/action/do_login.php';
+  require_once '../../res/action/do_login.php';
 
   $bmobObj = new BmobObject("find_work");
   $bmobUser = new BmobUser();
