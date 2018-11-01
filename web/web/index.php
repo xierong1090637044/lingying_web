@@ -1,58 +1,24 @@
 <?php
-include_once '../weixin.class.php';
-include_once '../lib/Bmob/BmobUser.class.php';
 include_once '../lib/Bmob/BmobObject.class.php';
+include_once '../lib/Bmob/BmobUser.class.php';
+include_once '../res/action/do_login.php';
 
-$weixin = new class_weixin();
-$bmobUser = new BmobUser();
+$user = new Dologin();
+$user = $user->getuser();
 
-$username = $_COOKIE["username"];
-$password = $_COOKIE["password"];
 $pagesize = 10;
 $currentpage = $_GET["page"];
 $pagelimit = $_GET["page"] * $pagesize;
 $skippage = ($_GET["page"] - 1) * $pagesize;
 
-if($username ==null || $password ==null)
-{
-    if (!isset($_GET["code"])){
-		$redirect_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		$jumpurl = $weixin->oauth2_authorize($redirect_url, "snsapi_userinfo", "123");
-		Header("Location: $jumpurl");
-	}else{
-        $access_token_oauth2 = $weixin->oauth2_access_token($_GET["code"]);
-		$userinfo = $weixin->oauth2_get_user_info($access_token_oauth2['access_token'], $access_token_oauth2['openid']);
-		$name = $userinfo["nickname"];
-		$password = $userinfo["openid"];
-        $city = $userinfo["city"];
-        $province = $userinfo["province"];
+$object = new BmobObject("find_work");
+$res=$object->get("",array('where={"isactive":true}'))->results;
+if(count($res) == 0) header('location:../web/depweb/error/nocontent.php');
 
-        $expire=time()+60*60*24*30;
-        setcookie("username", $name, $expire);
-        setcookie("password", $password, $expire);
+$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagelimit",'order=sort',"skip=$skippage"))->results;
+$informations = json_encode($res1);
 
-        try {
-            $res = $bmobUser->register(array("username"=>$userinfo["nickname"], "password"=>$userinfo["openid"],"openid"=>$userinfo["openid"],"avatar"=>str_replace("/0","/46",$userinfo["headimgurl"]),"sex"=>$userinfo["sex"],"city"=>$province.$city));
-        } catch (Exception $e) {
-            $res1 = $bmobUser->login($name,$password);
-            $info=json_encode($res1);
-            $info=json_decode($info,true);
-        }
-    }
-}else {
-    $res1 = $bmobUser->login($username,$password);
-    $info=json_encode($res1);
-    $info=json_decode($info,true);
-}
-
-  $object = new BmobObject("find_work");
-  $res=$object->get("",array('where={"isactive":true}'))->results;
-  if(count($res) == 0) header('location:../web/depweb/error/nocontent.php');
-
-  $res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagelimit",'order=sort',"skip=$skippage"))->results;
-  $informations = json_encode($res1);
-
-  (count($res)%$pagesize != 0) ? $lastpage = count($res)%$pagesize : $lastpage = count($res)%$pagesize + 1;
+(count($res)%$pagesize != 0) ? $lastpage = count($res)%$pagesize : $lastpage = count($res)%$pagesize + 1;
 ?>
 
 <html lang="zh-cn">
@@ -64,14 +30,32 @@ if($username ==null || $password ==null)
 		<meta http-equiv="Expires" content="0" />
 		<title>求职招聘</title>
         <link rel="stylesheet"  href="../css/bootstrap1.min.css">
-		<link rel="stylesheet"  href="../css/index.css">
+		<link rel="stylesheet"  href="../css/pages/index.css">
 		<link rel="stylesheet"  href="../css/iconfont1.css">
         <link rel="stylesheet"  href="../css/myPage.css">
+        <link rel="stylesheet" href="../css/swiper.min.css">
+        <script src="../js/swiper.min.js"></script>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/jqPaginator.min.js"></script>
         <script src="../js/iconfont.js"></script>
+
 	</head>
 	<body>
+        <!--<div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../images/header.png"  style="width:100%" id="headerimg"/></div>
+            <div class="swiper-slide"><img src="../images/header.png" style="width:100%"/></div>
+            <div class="swiper-slide"><img src="../images/header.png" style="width:100%"/></div>
+          </div>
+
+      </div>-->
+        <div style="display:flex;line-height: 30px;padding: 5px 10px;">
+            <div style="width:20px;margin-right:5px"><i class="iconfont icon-laba" style="font-size:20px;color:#f30"></i></div>
+            <div  style="width:calc(100% - 25px)"><marquee width=100% behavior=scroll direction=left align=left>
+               这里是求职招聘版块，您在这里可以找到在高邮地区相关的工作哦!
+             </marquee></div>
+        </div>
+
         <div class="main" id="main"></div>
 
         <div id="form1" runat="server" style="margin:10px 0;height:34px">
@@ -83,7 +67,7 @@ if($username ==null || $password ==null)
             <!--设置最多显示的页码数 可以手动设置 默认为7-->
             <input type="hidden" id="visiblePages" runat="server" value="5" />
          </div>
-       </div>
+     </div>
 
        <script>
        var list = <?php echo $informations; ?>;
@@ -110,10 +94,11 @@ if($username ==null || $password ==null)
        {
            var height = $(window).height();
            var paginationheight = $("#form1").height();
-           $("#main").css("height",height - paginationheight - 20);
+           $("#main").css("height",height - paginationheight - 60);
            $(document.body).css('height',height);
        })
 
+       //分页的功能
        function loadData(num) {
            $("#PageCount").val(<?php echo count($res); ?>);
        };
@@ -139,7 +124,7 @@ if($username ==null || $password ==null)
                onPageChange: function (num, type) {
                    if (type == "change") {
                         $("#main").empty();
-                       exeData(num, type);
+                        exeData(num, type);
                    }
                }
            });
@@ -149,6 +134,8 @@ if($username ==null || $password ==null)
            loadData(<?php echo $currentpage; ?>);
            loadpage();
        });
+
        </script>
+       <script src="../js/pages/index.js"></script>
 	</body>
 </html>

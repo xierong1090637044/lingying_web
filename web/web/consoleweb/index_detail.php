@@ -1,6 +1,7 @@
 <?php
   include_once '../../lib/Bmob/BmobObject.class.php';
   include_once '../../lib/Bmob/BmobUser.class.php';
+  require '../../res/action/do_login.php';
 
   $bmobObj = new BmobObject("find_work");
   $bmobUser = new BmobUser();
@@ -149,7 +150,6 @@
             });
 
             //回复别人
-
             $("#commentview").on("click","#comment_list",function(){
                 console.log("sss");
                 commentid = $(this).attr("data-id");
