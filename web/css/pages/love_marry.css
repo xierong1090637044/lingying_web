@@ -41,7 +41,7 @@ body {
 .zhiding
 {
     position: absolute;
-    color: #f30;
+    color: #f43985;
     top:10px;
     right: 10px;
     font-weight: bold;
@@ -51,6 +51,12 @@ body {
     font-size: 16px;
     font-weight: bold;
     color: #000;
+}
+.titlestyle1
+{
+    font-size: 16px;
+    font-weight: bold;
+    color: #f43985;
 }
 input:focus
 {

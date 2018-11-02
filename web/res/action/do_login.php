@@ -1,6 +1,6 @@
 <?php
 
-/*** */
+/*** 登录操作*/
 class Dologin
 {
 
@@ -12,14 +12,14 @@ class Dologin
     public function getuser()
     {
 
-        $weixin = new class_weixin();
         $bmobUser = new BmobUser();
-
         $username = $_COOKIE["username"];
         $password = $_COOKIE["password"];
 
         if($username ==null || $password ==null)
         {
+            $weixin = new class_weixin();
+
             if (!isset($_GET["code"])){
         		$redirect_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         		$jumpurl = $weixin->oauth2_authorize($redirect_url, "snsapi_userinfo", "123");
@@ -39,21 +39,17 @@ class Dologin
                 try {
                     $res = $bmobUser->register(array("username"=>$userinfo["nickname"], "password"=>$userinfo["openid"],"openid"=>$userinfo["openid"],"avatar"=>str_replace("/0","/46",$userinfo["headimgurl"]),"sex"=>$userinfo["sex"],"city"=>$province.$city));
 
-                    return $info;
+                    return $res;
                 } catch (Exception $e) {
-                    $res1 = $bmobUser->login($name,$password);
-                    $info=json_encode($res1);
-                    $info=json_decode($info,true);
+                    $res = $bmobUser->login($name,$password);
 
-                    return $info;
+                    return $res;
                 }
             }
         }else {
-            $res1 = $bmobUser->login($username,$password);
-            $info=json_encode($res1);
-            $info=json_decode($info,true);
+            $res = $bmobUser->login($username,$password);
 
-            return $info;
+            return $res;
         }
     }
 }

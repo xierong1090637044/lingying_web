@@ -3,11 +3,10 @@
   include_once '../../lib/Bmob/BmobUser.class.php';
   require_once '../../res/action/do_login.php';
 
-  $bmobObj = new BmobObject("find_work");
+  $bmobObj = new BmobObject("love_marry");
   $bmobUser = new BmobUser();
   $res=$bmobObj->get($_GET["id"],array('include=parent','where={"isactive":"true"}'));
   $result = json_encode($res);
-  $comment_list = [];
 
   //用户登录
   $user = new Dologin();
@@ -15,7 +14,7 @@
 
   //查询评论
   $id = $_GET["id"];
-  $comment = new BmobObject("Comment");
+  $comment = new BmobObject("Comment_lm");
   $getcommet=$comment->get("",array('where={"post":{"__type":"Pointer","className":"find_work","objectId":'."\"".$id."\"".'}}','include=author'))->results;
   $getcommet_result = json_encode($getcommet);
 
@@ -76,7 +75,7 @@
 
              $.ajax({
                  type: "POST",
-                 url: "../../action/appconsole/comment.php",
+                 url: "../../action/appconsole/comment_lm.php",
                  data: {type:"get_all_comment",objectid:objectid},
                  success: function(data){
                      console.log(data);
@@ -132,7 +131,7 @@
                 {}else {
                     $.ajax({
                         type: "POST",
-                        url: "../../action/appconsole/comment.php",
+                        url: "../../action/appconsole/comment_lm.php",
                         data: {type:comment_type,id:id,objectid:objectid,comment:comment,commentid:commentid},
                         success: function(data){
                             if(data)
