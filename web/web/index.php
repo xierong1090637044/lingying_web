@@ -55,7 +55,11 @@ $informations = json_encode($res1);
             <div  style="width:calc(100% - 50px)"><marquee width=100% behavior=scroll direction=left align=left>
                这里是求职招聘版块，您在这里可以找到高邮地区相关的工作哦!
              </marquee></div>
-			 <div style="width:20px;margin-left:5px" id="edit"><i class="iconfont icon-fabu1" style="font-size:20px;color:#919191"></i></div>
+			 <div style="width:20px;margin-left:5px" id="edit">
+			   <a href ="consoleweb/edit.php?type=index">
+				 <i class="iconfont icon-fabu1" style="font-size:20px;color:#919191"></i>
+			   </a>
+			 </div>
         </div>
 
         <div class="main" id="main"></div>
@@ -64,7 +68,7 @@ $informations = json_encode($res1);
           <div style="text-align:center">
             <ul class="pagination" id="pagination"></ul>
             <input type="hidden" id="PageCount" runat="server" />
-            <input type="hidden" id="PageSize" runat="server" value='8' />
+            <input type="hidden" id="PageSize" runat="server" value='10' />
             <input type="hidden" id="countindex" runat="server" value="10"/>
             <!--设置最多显示的页码数 可以手动设置 默认为7-->
             <input type="hidden" id="visiblePages" runat="server" value="5" />
@@ -72,9 +76,9 @@ $informations = json_encode($res1);
      </div>
 
        <script>
-       var list = <?php echo $informations; ?>;
-       console.log(list);
 
+	   //获得列表
+       var list = <?php echo $informations; ?>;
        for (var i = 0; i < list.length; i++)
        {
           var item = list[i];
@@ -102,6 +106,7 @@ $informations = json_encode($res1);
 
        //分页的功能
        function loadData(num) {
+
            $("#PageCount").val(<?php echo count($res); ?>);
        };
 
@@ -111,9 +116,12 @@ $informations = json_encode($res1);
        };
 
        function loadpage() {
+
+		   console.log(parseInt($("#visiblePages").val()));
            var myPageCount = parseInt($("#PageCount").val());
            var myPageSize = parseInt($("#PageSize").val());
            var countindex = myPageCount % myPageSize > 0 ? (myPageCount / myPageSize) + 1 : (myPageCount / myPageSize);
+		   console.log(myPageCount,myPageSize,countindex);
            $("#countindex").val(countindex);
 
            $.jqPaginator('#pagination', {

@@ -68,10 +68,12 @@ input:focus
     line-height: 80px;
     display: inline-block;
     margin-right: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 .bigimage
 {
-    width: 100%;
+    width: 80%;
     margin-top: 60px;
 }
 .mask
@@ -83,6 +85,9 @@ input:focus
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     display: none;
+    text-align: center;
+    overflow: scroll;
+    padding: 30px;
 }
 .bordertop
 {

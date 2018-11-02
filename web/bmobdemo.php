@@ -19,10 +19,10 @@ try {
     /*
      *  bmobObject 的例子
      */
-    $bmobObj = new BmobObject("GameScore");
-    $res=$bmobObj->create(array("playerName"=>"game","score"=>20)); //添加对象
+    $bmobObj = new BmobObject("GameScore","sdf2332sddfdsdf");
+    // $res=$bmobObj->create(array("playerName"=>"game","score"=>20)); //添加对象
     // $res=$bmobObj->get("bd89c6bce9"); // 获取id为bd89c6bce9的对象
-    // $res=$bmobObj->get(); // 获取所有对象
+    $res=$bmobObj->get(); // 获取所有对象
     // $res=$bmobObj->update("bd89c6bce9", array("score"=>60,"playerName"=>"game")); //更新对象bd89c6bce9, 任何您未指定的key都不会更改,所以您可以只更新对象数据的一个子集
     // $res=$bmobObj->delete("bd89c6bce9"); //删除对象bd89c6bce9
     // $res=$bmobObj->get("",array('where={"playerName":"game"}','limit=2')); //对象的查询,这里是表示查找playerName为"game"的对象，只返回２个结果
@@ -125,10 +125,8 @@ try {
 
     ////短信相关
     $bmobSms = new BmobSms();
-    // $res = $bmobSms->sendSms("131xxxxxxxx", "您的验证码是：222222, 有效期是10分钟。"); //发送短信
     // $res = $bmobSms->sendSmsVerifyCode("131xxxxxxxx", "注册模板");  //发送短信验证码
     // $res = $bmobSms->verifySmsCode("131xxxxxxxx","028584");  //发送短信验证码
-    // $res = $bmobSms->querySms("6466181");  //查询短信状态
 
     ////app相关
     // $bmobApp = new BmobApp();
@@ -175,9 +173,9 @@ try {
      *  bmobUser 的例子
      */
     $bmobUser = new BmobUser();
-    //$res = $bmobUser->register(array("username"=>"cooldude117", "password"=>"p_n7!-e8", "phone"=>"415-392-0202", "email"=>"bmobtest111@126.com")); //用户注册, 其中username和password为必填字段
+    // $res = $bmobUser->register(array("username"=>"cooldude117", "password"=>"p_n7!-e8", "phone"=>"415-392-0202", "email"=>"bmobtest111@126.com")); //用户注册, 其中username和password为必填字段
     // $res = $bmobUser->register(array("mobilePhoneNumber"=>"131xxxxxxxx", "smsCode"=>"502845")); //用户注册, mobilePhoneNumber 就是手机号码，而 smsCode 是使用 请求短信验证码API发送到用户手机上的 6位验证码字符串。如果是新用户且不传入 username，默认用户名将是手机号码。
-     $res = $bmobUser->login("test111@qq.com","111111"); //用户登录, 第一个参数为用户名,第二个参数为密码
+    // $res = $bmobUser->login("test111@qq.com","111111"); //用户登录, 第一个参数为用户名,第二个参数为密码
     // $res = $bmobUser->loginByMobile("131xxxxxxxx","745399"); //用手机号登录, 其中mobilePhoneNumber和smsCode为必填字段
     // $res = $bmobUser->get("415b8fe99a"); // 获取id为415b8fe99a用户的信息
     // $res = $bmobUser->get(); // 获取所有用户的信息
@@ -202,5 +200,5 @@ try {
 
     var_dump($res);
 } catch (Exception $e) {
-    var_dump($e);
+    echo $e;
 }

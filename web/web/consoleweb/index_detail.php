@@ -104,12 +104,12 @@
              });
 
             var html = "";
-            if(result.image1 !=null) html += "<div class='imagesize'><img src="+result.image1.url+" class='listimage'></div>";
-            if(result.image2 !=null) html += "<div class='imagesize'><img src="+result.image2.url+" class='listimage'></div>";
-            if(result.image3 !=null) html += "<div class='imagesize'><img src="+result.image3.url+" class='listimage'></div>";
-            if(result.image4 !=null) html += "<div class='imagesize'><img src="+result.image4.url+" class='listimage'></div>";
-            if(result.image5 !=null) html += "<div class='imagesize'><img src="+result.image5.url+" class='listimage'></div>";
-            if(result.image6 !=null) html += "<div class='imagesize'><img src="+result.image6.url+" class='listimage'></div>";
+            if(result.image1 !=null) html += "<div class='imagesize'><img src="+result.image1+" class='listimage'></div>";
+            if(result.image2 !=null) html += "<div class='imagesize'><img src="+result.image2+" class='listimage'></div>";
+            if(result.image3 !=null) html += "<div class='imagesize'><img src="+result.image3+" class='listimage'></div>";
+            if(result.image4 !=null) html += "<div class='imagesize'><img src="+result.image4+" class='listimage'></div>";
+            if(result.image5 !=null) html += "<div class='imagesize'><img src="+result.image5+" class='listimage'></div>";
+            if(result.image6 !=null) html += "<div class='imagesize'><img src="+result.image6+" class='listimage'></div>";
             $("#images").append(html);
 
             $("#images").find(".listimage").bind("click",function(){

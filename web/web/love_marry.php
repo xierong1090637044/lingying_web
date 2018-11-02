@@ -53,6 +53,11 @@ $images = json_encode($images);
             <div  style="width:calc(100% - 25px)"><marquee width=100% behavior=scroll direction=left align=left>
                即使太阳的光辉不再灿烂，只要心灵豁然开朗。亦可在我心中寻访阳光！
              </marquee></div>
+			 <div style="width:20px;margin-left:5px" id="edit">
+			   <a href ="consoleweb/edit.php?type=love_marry">
+				 <i class="iconfont icon-fabu1" style="font-size:20px;color:#919191"></i>
+			   </a>
+			 </div>
         </div>
 
         <div class="main" id="main">
@@ -65,7 +70,7 @@ $images = json_encode($images);
           <div style="text-align:center">
             <ul class="pagination" id="pagination"></ul>
             <input type="hidden" id="PageCount" runat="server" />
-            <input type="hidden" id="PageSize" runat="server" value='8' />
+            <input type="hidden" id="PageSize" runat="server" value='10' />
             <input type="hidden" id="countindex" runat="server" value="10"/>
             <!--设置最多显示的页码数 可以手动设置 默认为7-->
             <input type="hidden" id="visiblePages" runat="server" value="5" />
