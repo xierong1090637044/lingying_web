@@ -13,7 +13,7 @@
       if(count($images) == 0)
       {
           $object = new BmobObject("find_work");
-          $res=$object->create(array("title"=>$title,"content"=>$content,"isactive"=>true,"sort"=>999999 )); //添加对象
+          $res=$object->create(array("title"=>$title,"content"=>$content,"isactive"=>true,"sort"=>2 )); //添加对象
           $res=$object->updateRelPointer($res->objectId, "parent", "_User", $userid);
       }else {
           $object = new BmobObject("find_work");
@@ -29,7 +29,7 @@
       if(count($images) == 0)
       {
           $object = new BmobObject("love_marry");
-          $res=$object->create(array("title"=>$title,"content"=>$content,"isactive"=>true,"sort"=>999999 )); //添加对象
+          $res=$object->create(array("title"=>$title,"content"=>$content,"isactive"=>true,"sort"=>2 )); //添加对象
           $res=$object->updateRelPointer($res->objectId, "parent", "_User", $userid);
       }else {
           $object = new BmobObject("love_marry");

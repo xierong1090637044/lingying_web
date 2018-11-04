@@ -16,7 +16,7 @@ $object = new BmobObject("love_marry");
 $res=$object->get("",array('where={"isactive":true}'))->results;
 if(count($res) == 0) header('location:../web/depweb/error/nocontent.php');
 
-$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagesize",'order=sort',"skip=$skippage"))->results;
+$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagesize",'order=sort,-createdAt',"skip=$skippage"))->results;
 $informations = json_encode($res1);
 
 (count($res)%$pagesize == 0) ? $lastpage = intval(floor(count($res)/$pagesize)): $lastpage = intval(floor(count($res)/$pagesize)) + 1;
@@ -89,7 +89,7 @@ $images = json_encode($images);
           html +="<div class='headeritem'><div class='avatar'><image src="+item.parent.avatar+" class='avatarimg' /></div>";
           html +="<div class='username'><div>"+item.parent.username+"</div><div class='creattime'>"+item.createdAt +"</div></div></div>";
           html +="<div class='titlestyle'>"+item.title+"</div>";
-          if(item.sort <= 5) html +='<div class="zhiding"><i class="iconfont icon-aiqingniao" style="font-size:20px;color:#ff0068;margin-right:5px"></i>置顶</div>';
+          if(item.sort == 1) html +='<div class="zhiding"><i class="iconfont icon-aiqingniao" style="font-size:20px;color:#ff0068;margin-right:5px"></i>置顶</div>';
           html +="</div>";
           $("#main").append(html);
        }
