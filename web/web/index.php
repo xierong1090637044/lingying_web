@@ -9,14 +9,13 @@ $user = $user->getuser();
 
 $pagesize = 10;
 $currentpage = $_GET["page"];
-$pagelimit = $_GET["page"] * $pagesize;
 $skippage = ($_GET["page"] - 1) * $pagesize;
 
 $object = new BmobObject("find_work");
 $res=$object->get("",array('where={"isactive":true}'))->results;
 if(count($res) == 0) header('location:../web/depweb/error/nocontent.php');
 
-$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagelimit",'order=sort',"skip=$skippage"))->results;
+$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagesize",'order=sort',"skip=$skippage"))->results;
 $informations = json_encode($res1);
 
 (count($res)%$pagesize == 0) ? $lastpage = intval(floor(count($res)/$pagesize)): $lastpage = intval(floor(count($res)/$pagesize)) + 1;
@@ -79,6 +78,7 @@ $informations = json_encode($res1);
 
 	   //获得列表
        var list = <?php echo $informations; ?>;
+	   console.log(list);
        for (var i = 0; i < list.length; i++)
        {
           var item = list[i];
@@ -121,7 +121,6 @@ $informations = json_encode($res1);
            var myPageCount = parseInt($("#PageCount").val());
            var myPageSize = parseInt($("#PageSize").val());
            var countindex = myPageCount % myPageSize > 0 ? (myPageCount / myPageSize) + 1 : (myPageCount / myPageSize);
-		   console.log(myPageCount,myPageSize,countindex);
            $("#countindex").val(countindex);
 
            $.jqPaginator('#pagination', {

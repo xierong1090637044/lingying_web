@@ -9,7 +9,6 @@ $user = $user->getuser();
 
 $pagesize = 10;
 $currentpage = $_GET["page"];
-$pagelimit = $_GET["page"] * $pagesize;
 $skippage = ($_GET["page"] - 1) * $pagesize;
 
 //获得数据
@@ -17,7 +16,7 @@ $object = new BmobObject("love_marry");
 $res=$object->get("",array('where={"isactive":true}'))->results;
 if(count($res) == 0) header('location:../web/depweb/error/nocontent.php');
 
-$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagelimit",'order=sort',"skip=$skippage"))->results;
+$res1=$object->get("",array('include=parent','where={"isactive":true}',"limit=$pagesize",'order=sort',"skip=$skippage"))->results;
 $informations = json_encode($res1);
 
 (count($res)%$pagesize == 0) ? $lastpage = intval(floor(count($res)/$pagesize)): $lastpage = intval(floor(count($res)/$pagesize)) + 1;

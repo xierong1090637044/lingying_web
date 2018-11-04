@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL^E_NOTICE);
+ini_set('upload_max_filesize', '5m');
 include_once '../../weixin.class.php';
 include_once '../../lib/Bmob/BmobObject.class.php';
 include_once '../../lib/Bmob/BmobFile.class.php';
@@ -126,56 +127,63 @@ $type = $_GET["type"];
              var reads= new FileReader();
              f=document.getElementById('uploadimg').files[0];
              console.log(f);
-             reads.readAsDataURL(f);
-             reads.onload=function (e) {
-                 $.ajax({
-                     type: "POST",
-                     url: "../../action/upload.php",
-                     data: {image:e.currentTarget.result,name:f.name,type:"upload"},
-                     success: function(data){
-                          console.log(data);
-                          if(data.state)
-                          {
-                              var number = $("#listimgs").children().length;
-                              if(number == 6)
+			 var size = f.size;
+			 if(size/1024>2000)
+			 {
+				  $("#toast").html("上传图片大小不能超过2M!");
+				  setTimeout(function(){
+					  $("#toast").html("");
+				  },1000);
+			 }else {
+				 reads.readAsDataURL(f);
+                 reads.onload=function (e) {
+                     $.ajax({
+                         type: "POST",
+                         url: "../../action/upload.php",
+                         data: {image:e.currentTarget.result,name:f.name,type:"upload"},
+                         success: function(data){
+                              console.log(data);
+                              if(data.state)
                               {
-                                  $("#addimgs").parent().css("display","none");
+                                  var number = $("#listimgs").children().length;
+                                  if(number == 6)
+                                  {
+                                      $("#addimgs").parent().css("display","none");
+                                  }
+                                  $("#listimgs").css("width",90*(number+1)+10);
+                                  $("#listimgs").append('<div class="imgdiv_add"><img src='+ data.url +' class="listimgs" data-name='+data.filename+'><div id="delete" class="delete">x</div></div>');
+    							  $("#listimgs").find("#delete").bind("click",function(){
+    								  var number = $("#listimgs").children().length;
+    								  $("#listimgs").css("width",90*(number+1)+10);
+    								  if(number <= 6)
+    	                              {
+    	                                  $("#addimgs").parent().css("display","inline-block");
+    	                              }
+
+    								  var src = $(this).parent().find(".listimgs").attr("src");
+    								  $(this).parent().remove();
+    					 			  console.log(src);
+    								  $.ajax({
+    				                      type: "POST",
+    				                      url: "../../action/upload.php",
+    				                      data: {image:src,type:"delete"},
+    				                      success: function(data){
+
+    				                      },
+    				                      error : function(data) {
+    				                          console.log((data));
+    				                      },
+    				                  });
+    							  });
                               }
-                              $("#listimgs").css("width",90*(number+1)+10);
-                              $("#listimgs").append('<div class="imgdiv_add"><img src='+ data.url +' class="listimgs" data-name='+data.filename+'><div id="delete" class="delete">x</div></div>');
-							  $("#listimgs").find("#delete").bind("click",function(){
-								  var number = $("#listimgs").children().length;
-								  $("#listimgs").css("width",90*(number+1)+10);
-								  if(number <= 6)
-	                              {
-	                                  $("#addimgs").parent().css("display","inline-block");
-	                              }
-
-								  var src = $(this).parent().find(".listimgs").attr("src");
-								  $(this).parent().remove();
-					 			  console.log(src);
-								  $.ajax({
-				                      type: "POST",
-				                      url: "../../action/upload.php",
-				                      data: {image:src,type:"delete"},
-				                      success: function(data){
-
-				                      },
-				                      error : function(data) {
-				                          console.log((data));
-				                      },
-				                  });
-							  });
-                          }
-                     },
-                     error : function(data) {
-                         console.log((data));
-                     },
-                 });
-             };
-
+                         },
+                         error : function(data) {
+                             console.log((data));
+                         },
+                     });
+                 };
+			 }
          };
-
        </script>
 
 	</body>

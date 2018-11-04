@@ -1,5 +1,6 @@
 <?php
     include_once '../lib/Bmob/BmobFile.class.php';
+    ini_set('upload_max_filesize', '5m');
 
     header('Content-Type:application/json');//这个类型声明非常关键
     $result = new \stdClass;
