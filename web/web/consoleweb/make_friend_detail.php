@@ -4,11 +4,10 @@
   require_once '../../res/action/do_login.php';
   require_once '../../res/comp/footer.php';
 
-  $bmobObj = new BmobObject("find_work");
+  $bmobObj = new BmobObject("make_friend");
   $bmobUser = new BmobUser();
   $res=$bmobObj->get($_GET["id"],array('include=parent','where={"isactive":"true"}'));
   $result = json_encode($res);
-  $comment_list = [];
 
   //用户登录
   $user = new Dologin();
@@ -16,7 +15,7 @@
 
   //查询评论
   $id = $_GET["id"];
-  $comment = new BmobObject("Comment");
+  $comment = new BmobObject("Comment_mf");
   $getcommet=$comment->get("",array('where={"post":{"__type":"Pointer","className":"find_work","objectId":'."\"".$id."\"".'}}','include=author'))->results;
   $getcommet_result = json_encode($getcommet);
 
@@ -77,6 +76,7 @@
              <div style="margin:30px 0 0">
                  <?php $footer = new footer();$footer->footer(); ?>
              </div>
+
         </div>
 
         <div class="mask"><img id="bigimage" class="bigimage"/></div>
@@ -93,10 +93,10 @@
 
              $.ajax({
                  type: "POST",
-                 url: "../../action/appconsole/comment.php",
+                 url: "../../action/appconsole/comment_mf.php",
                  data: {type:"get_all_comment",objectid:objectid},
                  success: function(data){
-                     console.log(data.length);
+                     console.log(data);
                      $("#comment_length").html(data.length);
                      for (var i = 0; i < data.length; i++) {
                          var item = data[i];
@@ -142,7 +142,6 @@
                 $(".mask").css("display","none");
             });
 
-            //评论别人
             $("#comment").click(function(){
                 console.log(comment_type);
                 var comment = $(".inputstyle").val().trim();
@@ -151,7 +150,7 @@
                 {}else {
                     $.ajax({
                         type: "POST",
-                        url: "../../action/appconsole/comment.php",
+                        url: "../../action/appconsole/comment_mf.php",
                         data: {type:comment_type,id:id,objectid:objectid,comment:comment,commentid:commentid},
                         success: function(data){
                             if(data)
@@ -169,6 +168,7 @@
 
             //回复别人
             $("#commentview").on("click","#comment_list",function(){
+                console.log("sss");
                 commentid = $(this).attr("data-id");
                 $(this).siblings().find("#comment_div").css("display","none");
                 $(this).find("#comment_div").toggle();

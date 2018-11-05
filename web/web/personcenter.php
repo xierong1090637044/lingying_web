@@ -4,27 +4,18 @@
      require_once '../res/class/GetUser.php';
      require_once '../res/action/get_code.php';
      require_once '../res/action/require_mobile.php';
-     include_once '../weixin.class.php';
+     include_once '../res/action/do_login.php';
 
      error_reporting(E_ALL^E_NOTICE);//忽略php的notice
-
-     $id = $_GET["id"];
-     $user = new GetUser($id);
-     if($user->res==null) header('location:../web/depweb/error/nouser.php');
-
-     $getcookie = $_COOKIE["phonenumber"];
-     if($id != $getcookie) header('location:../web/index.php');
-     if(!isset($getcookie)) header('location:../web/index.php');//防止直接绕过登录流程
-
-     $nickname = $user->nickname();
-     $avatar = $user->avatar();
-
      $ismoile = new ISMOBILE();
      $ismoile->do_iswechat();
 
-     //微信jssdk配置
-     $jssdk = new JSSDK("wx938b0fcd9237d92a", "d1ae3338d17116ccc6cc7bc85a849700");
-     $signPackage = $jssdk->GetSignPackage();
+     $user = new Dologin();
+     $user = $user->getuser();
+
+     $avatar = $user->avatar;
+     $nickname = $user->username;
+     $id = $user->objectId;
 
      $getcode = new Code($id);
      $codeimg = $getcode->getcodeimg();
@@ -42,9 +33,12 @@
     <link rel="stylesheet"  href="../css/iconfont1.css">
     <link rel="stylesheet" href="../css/weui.min.css">
     <link rel="stylesheet" href="../css/bootstrap1.min.css">
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+    <link rel="stylesheet" href="../css/demos.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/fastclick.js"></script>
     <script type="text/javascript" src="../js/pages/personcenter.js"></script>
     <script src="../js/iconfont.js"></script>
 </head>
@@ -54,23 +48,17 @@
         <div><img src="<?php echo $avatar;?>" class="avatar"></div>
         <div style="color:#fff;margin-left:10px;padding: 5px 0;text-align:left">
             <div style="margin-bottom:5px"><?php echo $nickname;?></div>
-            <div class="bindmobileicon"><i class="iconfont icon-6"></i></div>
+            <!--<div class="bindmobileicon"><i class="iconfont icon-6"></i></div>-->
+            <div class="bindmobileicon"><i class="iconfont icon-weixin1"></i></div>
         </div>
         <div class="mycode" id="mycode"><i class="iconfont icon-erweima" style="font-size:20px"></i></div>
     </div>
     <div class="border-choice">
-        <div class="every-item">
-            <div>
-                <div class="item-border"><i class="iconfont icon-personal-center" style="font-size:20px"></i></div>
-                <span>我的认证</span>
-            </div>
-            <div><i class="iconfont icon-youbian" style="font-size:20px;color:#999"></i></div>
-        </div>
 
-        <div class="every-item">
+        <div class="every-item" id='show-actions'>
             <div>
                 <div class="item-border"><i class="iconfont icon-icon" style="font-size:20px"></i></div>
-                <span>我的发布</span>
+                <span>我要发布</span>
             </div>
             <div><i class="iconfont icon-youbian" style="font-size:20px;color:#999"></i></div>
         </div>
@@ -78,7 +66,7 @@
         <div class="every-item">
             <div>
                 <div class="item-border"><i class="iconfont icon-kecheng" style="font-size:20px"></i></div>
-                <span>我的申请</span>
+                <span>我的发布</span>
             </div>
             <div><i class="iconfont icon-youbian" style="font-size:20px;color:#999"></i></div>
         </div>
@@ -90,10 +78,12 @@
             </div>
             <div><i class="iconfont icon-youbian" style="font-size:20px;color:#999"></i></div>
         </div>
+
     </div>
     <?php $loading = new Dialog('dialog','dialog',"我的二维码","<img id='qrocde' class='qrcode'>");$loading->dialog()  ?>
 </body>
 
+<script src="../js/jquery-weui.js"></script>
 <script>
         var codeimg = "<?php  echo $codeimg ?>";
         $("#qrocde").attr("src",codeimg);

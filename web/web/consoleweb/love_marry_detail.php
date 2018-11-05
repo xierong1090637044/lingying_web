@@ -2,6 +2,7 @@
   include_once '../../lib/Bmob/BmobObject.class.php';
   include_once '../../lib/Bmob/BmobUser.class.php';
   require_once '../../res/action/do_login.php';
+  require_once '../../res/comp/footer.php';
 
   $bmobObj = new BmobObject("love_marry");
   $bmobUser = new BmobUser();
@@ -51,6 +52,17 @@
 
              <div class="bordertop"></div>
 
+             <div class="share_and_comment">
+                 <div class="divelement" id="share">
+                     <i class="iconfont icon-icon" style="font-size:20px;color:#919191"></i>
+                     <span>分享</span>
+                 </div>
+                 <div class="divelement" id="comment_i_want">
+                     <i class="iconfont icon-miaoshu" style="font-size:20px;color:#919191"></i>
+                     <span id="comment_length"></span>
+                 </div>
+             </div>
+
              <div class="comment" id="commentview"></div>
 
              <div>
@@ -60,9 +72,15 @@
                  </div>
                  <div style="text-align:right;margin:10px 0 0"><button type="button" class="btn btn-info" id="comment">回复</button></div>
              </div>
+
+             <div style="margin:30px 0 0">
+                 <?php $footer = new footer();$footer->footer(); ?>
+             </div>
+             
         </div>
 
         <div class="mask"><img id="bigimage" class="bigimage"/></div>
+        <div class="mask_share"><img style="width:100%" src="../../images/refer_shareimg.png"/></div>
         <script>
              var comment_type = "comment";
              var id = "<?php echo $info->objectId;  ?>";
@@ -79,6 +97,7 @@
                  data: {type:"get_all_comment",objectid:objectid},
                  success: function(data){
                      console.log(data);
+                     $("#comment_length").html(data.length);
                      for (var i = 0; i < data.length; i++) {
                          var item = data[i];
                          console.log(item);
@@ -159,6 +178,19 @@
                     comment_type = "comment_user";
                     commentid = commentid;
                 });
+            });
+
+            //评论的icon点击
+            $("#comment_i_want").click(function(){
+                $(".inputstyle").focus();
+            });
+
+            $("#share").click(function(){
+                $(".mask_share").css("display","block");
+            });
+
+            $(".mask_share").click(function(){
+                $(".mask_share").css("display","none");
             });
 
         </script>

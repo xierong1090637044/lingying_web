@@ -1,3 +1,8 @@
+
+     body
+     {
+         background: #fafafa;
+     }
     .Mobcontent
     {
 
@@ -10,7 +15,7 @@
         display: flex;
         padding: 25px 10px;
         position: relative;
-        margin: 15px;
+        margin: 10px;
     }
     .avatar {
         width: 4rem;
@@ -54,11 +59,11 @@
     {
         display:flex;
         justify-content: space-between;
-        line-height: 41px;
-        padding: 0px 5px;
-        margin-bottom: 8px;
+        line-height: 40px;
+        margin: 0 10px;
         background: #fff;
-        height: 39px;
+        border-bottom: 1px solid#ddd;
+        margin-bottom: 5px;
     }
     .border-choice
     {

@@ -16,27 +16,38 @@ $(document).ready(function()
         $("#dialog").toggle();
     });
 
-    wx.config({
-        debug: false,
-        appId: '<?php echo $signPackage["appId"];?>',
-        timestamp: '<?php echo $signPackage["timestamp"];?>',
-        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-        signature: '<?php echo $signPackage["signature"];?>',
-        jsApiList: [
-            'openLocation',
-            'getLocation',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage']
-        });
-        wx.ready(function () {
-            wx.getLocation({
-                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-                success: function (res) {
-                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                    var speed = res.speed; // 速度，以米/每秒计
-                    var accuracy = res.accuracy; // 位置精度
-                }
-            });
-        });
+    $(function() {
+      FastClick.attach(document.body);
+    });
+
+    $(document).on("click", "#show-actions", function() {
+       $.actions({
+         onClose: function() {
+           console.log("close");
+         },
+         actions: [
+           {
+             text: "求职招聘",
+             className: "color-primary",
+             onClick: function() {
+               window.location.href = "index.php?page=1";
+             }
+           },
+           {
+             text: "谈婚论嫁",
+             className: "color-primary",
+             onClick: function() {
+               window.location.href = "love_marry.php?page=1";
+             }
+           },
+           {
+             text: "老乡邦",
+             className: 'color-primary',
+             onClick: function() {
+               window.location.href = "make_friend.php?page=1";
+             }
+           }
+         ]
+       });
+     });
 })
