@@ -1,5 +1,5 @@
 <?php
-     require_once "../jssdk.php";
+     include_once '../weixin.class.php';
      require_once "../res/comp/dialog.php";
      require_once '../res/class/GetUser.php';
      require_once '../res/action/get_code.php';
@@ -31,7 +31,6 @@
     <title>个人中心</title>
     <link rel="stylesheet"  href="../css/pages/personcenter_1.css">
     <link rel="stylesheet"  href="../css/iconfont1.css">
-    <link rel="stylesheet" href="../css/weui.min.css">
     <link rel="stylesheet" href="../css/bootstrap1.min.css">
     <link rel="stylesheet" href="../css/weui.min.css">
     <link rel="stylesheet" href="../css/jquery-weui.css">
@@ -51,7 +50,7 @@
             <!--<div class="bindmobileicon"><i class="iconfont icon-6"></i></div>-->
             <div class="bindmobileicon"><i class="iconfont icon-weixin1"></i></div>
         </div>
-        <div class="mycode" id="mycode"><i class="iconfont icon-erweima" style="font-size:20px"></i></div>
+        <!--<div class="mycode" id="mycode"><i class="iconfont icon-erweima" style="font-size:20px"></i></div>-->
     </div>
     <div class="border-choice">
 
